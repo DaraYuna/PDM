@@ -18,18 +18,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 15,
-    backgroundColor: '#81b1dd',
-    borderRadius: 8,
+    backgroundColor: '#093b69',
+    borderRadius: 6,
     marginBottom: 10,
+    alignItems: 'center',
   },
   periodo: {
-    fontSize: 16,
-    color: '#050000',
+    fontSize: 18,
+    color: '#f5f5f5',
   },
   soma: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#0d9208',
+    color: '#30d12b',
   }
 });
 

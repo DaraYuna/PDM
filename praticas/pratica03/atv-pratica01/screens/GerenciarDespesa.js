@@ -66,23 +66,24 @@ function GerenciarDespesa() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 20,
+    backgroundColor: '#eef0d5',
+    paddding: 20,
   },
   inputContainer: {
-    marginHorizontal: 4,
+    marginHorizontal: 24,
     marginVertical: 16,
   },
   label: {
     fontSize: 12,
     marginBottom: 4,
-    color: '#333'
+    color: '#0a000a'
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 8,
-    borderRadius: 4,
-    backgroundColor: '#fff'
+    borderColor: '#046b0d',
+    padding: 10,
+    borderRadius: 6,
+    backgroundColor: '#e2c6e0'
   },
 });
 

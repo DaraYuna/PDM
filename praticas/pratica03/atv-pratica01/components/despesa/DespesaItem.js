@@ -26,17 +26,19 @@ const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
     padding: 15,
-    marginVertical: 5,
+    marginVertical: 10,
     marginHorizontal: 5,
-    backgroundColor: 'lightgray',
+    backgroundColor: '#e0a8ce',
     flexDirection: 'row',
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'space-between'
   },
+
   itemText: {
     flex: 1,
   },
+
 });
 
 export default DespesaItem;

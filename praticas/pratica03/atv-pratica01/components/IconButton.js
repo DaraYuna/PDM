@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   pressed: {
-    opacity: 0.5,
+    opacity: 1,
   },
 });
 
