@@ -1,40 +1,59 @@
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
-import { rotulo_btn_cadastro_meta,  rotulo_input_meta } from './mensagens';
+import { StyleSheet, View, Image} from 'react-native';
 import { useState} from 'react';
 import MetaList from './components/MetaList';
+import MetaInput from './components/MetaInput';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
-  const [inputMetaText, setInputMetaText] = useState("");
+
   const [metas, setMetas] = useState([]);
   
   function metaInputHandler (inputText){
     setInputMetaText(inputText)
   };
   
-  function adicionarMetaHandler (){
-    setMetas([...metas, inputMetaText])
+  function adicionarMetaHandler (inputMeta){
+    const novaMeta = {id: Math.random().toString(),texto: inputMeta};
+    setMetas([...metas, novaMeta]);
+  };
+
+  function deletarMetaHandler (id){
+    console.log(id);
+    const novasMetas = metas.filter(meta => meta.id !== id);
+    setMetas(novasMetas);
   };
 
   return (
-    <View style={styles.mainContainer}>
-      <View style={{flexDirection: 'row', 
-                    justifyContent: 'space-between', 
-                    flex: 1}}>
-        <View style={{width:'65%'}}>
-          <TextInput onChangeText={metaInputHandler} style = {styles.inputText} placeholder = {rotulo_input_meta} />
-        </View>
+   <SafeAreaProvider> 
+   <SafeAreaView style={styles.safeArea}>
+    <View style={styles.topo}>
+      <Text style={styles.headerText}>Minhas Metas</Text>
+    
+    <View style={styles.imageContainer}>
+        <Image
+          source={{ uri: 'https://www.logoai.com/oss/icons/2021/10/27/NTs7EMHlHtbJE3B.png' }}
+          style={{ width: 80, height: 100 }}
+          resizeMode='contain'
+        />
+  </View>
 
-        <View style={{width:'30%'}}>
-          <Button onPress={adicionarMetaHandler} color = '#ad0cadff' title = {rotulo_btn_cadastro_meta} />
-        </View>
-
+  <View>
+      <Text style={styles.headerText}>Minhas METAS</Text>
       </View>
+  </View>
 
-        <View style={styles.metaContainer}>
-          <MetaList array={metas}/>
+    <View style={styles.mainContainer}>
+
+       <MetaInput onAddMeta={adicionarMetaHandler}/>
+
+      <View style={styles.metaContainer}>
+          <MetaList array={metas}
+           onDeleteItem = {deletarMetaHandler}/>
         </View>
         
-    </View>
+      </View>
+    </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
@@ -58,6 +77,33 @@ const styles = StyleSheet.create({
 
   metaContainer: {
     flex: 15,
+  },
+
+  image:{
+    width: 50,
+    height: 50,
+  },
+
+  safeArea:{
+    backgroundColor:'#fff',
+    flex: 1,
+  },
+
+  imageContainer:{
+    alignItems:'left',
+    marginTop:10,
+    paddingLeft:30,
+  },
+
+    topo:{
+    alignItems:'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+  },
+
+    headerText:{
+    fontSize: 20,
+    marginLeft: 10,
   },
 
 });
