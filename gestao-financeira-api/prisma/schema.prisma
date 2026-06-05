@@ -1,0 +1,35 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Tabela de Categorias
+model Category {
+  id           String        @id @default(uuid())
+  name         String        @unique
+  displayName  String
+  icon         String
+  background   String
+  isIncome     Boolean       @default(false)
+  isDefault    Boolean       @default(false)
+  
+  // Relação inversa: Uma categoria pode estar em várias transações
+  transactions Transaction[]
+}
+
+// Tabela de Transações (A novidade da Fase 3)
+model Transaction {
+  id          String   @id @default(uuid())
+  description String
+  amount      Float    // Valor da movimentação (ex: 45.90)
+  type        String   // Deve ser "INCOME" (Entrada) ou "EXPENSE" (Saída)
+  date        DateTime @default(now())
+
+  // Chave estrangeira que conecta com a Categoria
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+}
